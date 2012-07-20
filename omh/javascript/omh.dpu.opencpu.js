@@ -12,7 +12,8 @@ if(typeof omh.dpu == 'undefined'){
 omh.dpu.opencpu = function(){
   var self = $.extend(omh.dpu(), {
     //context_path:context_path,
-    base_path:"http://omh.opencpu.org/R/call/dpu.ptsd",
+    //base_path:"http://omh.opencpu.org/R/call/dpu.ptsd",
+    base_path:"http://test-r.mobilizingcs.org/R/call/dpu.ptsd",
     output:"jsonp",
     /***************************************************************************
      * Process function, sends data to specific opencpu urls
@@ -22,7 +23,7 @@ omh.dpu.opencpu = function(){
         self.processJsonp(function_name, data, callback) 
       else if(self.output == "json")
         self.processJson(function_name, data, callback) 
-    }.defaults(function(result){
+    }.defaults(function(result){ 
       console.log(result)
     }),
     /***************************************************************************
@@ -34,7 +35,7 @@ omh.dpu.opencpu = function(){
         callback(jsonp)
       }
       $.jsonp({
-        url: "http://ri.omh.io/R/call/dpu.ptsd/"+function_name+"/jsonp?!prefix='"+callbackName+"'&"+self.urlEncode(data),
+        url: self.base_path+"/"+function_name+"/jsonp?!prefix='"+callbackName+"'&"+self.urlEncode(data),
         callbackParameter: callbackName
       });
     }.defaults(function(result){
